@@ -1,0 +1,20 @@
+{% extends "index.html" %}
+
+{% block header %}
+    {% if form.__class__.__name__ not in ["select_table"]%}  
+        <h1>{% block title %}Wprowadzanie danych: {{form.__class__.__name__}}{% endblock %}</h1>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<form method="POST" action="">
+    {% for field in form %}
+        {% if field.type != 'CSRFTokenField' and field.name != 'submit' %}
+            {{ field.label() }}
+            {{ field() }}
+        {% endif %}
+    {% endfor %}
+    {{ form.submit }}
+</form>
+{% endblock %}

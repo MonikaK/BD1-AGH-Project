@@ -1,0 +1,30 @@
+{% extends "index.html" %}
+
+{% block header %}
+    <h2>{% block title %}Repertuar i rezerwacje{% endblock %}</h2>
+{% endblock %}
+
+{% block content %}
+    <a href="{{ url_for('data', function='1') }}">Lista osób rezerwujących</a><br><br>
+    <a href="{{ url_for('data', function='2') }}">Repertuar</a><br><br>
+    <a href="{{ url_for('data', function='3') }}">Lista rezerwacji</a><br><br>
+    <a href="{{ url_for('data', function='4') }}">Lista sprzedaży</a><br><br>
+
+    {% if show %}
+        <table>
+            <tr>
+                {% for name in names %}
+                    <th>{{ name }}</th>
+                {% endfor %}
+            </tr>
+
+            {% for row in records %}
+                <tr>
+                    {% for element in row %}
+                        <td>{{ element }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}

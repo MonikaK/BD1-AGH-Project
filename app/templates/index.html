@@ -1,0 +1,30 @@
+<!doctype html>
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <title>BD1 - Projekt</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='app.css')}}">
+    {% endblock %}
+</head>
+<body>
+    <nav>
+        <h1>Kino</h1>
+        <ul>
+            {% block links %}
+            <li><a href="{{ url_for('data') }}">Informacje o repertuarze, rezerwacjach i sprzedażach</a>
+            <li><a href="{{ url_for('add', form_name='none') }}">Dodawanie danych do tabel</a>
+            <li><a href="{{ url_for('select', form_name='none') }}">Wyswietlanie wszystkich tabel</a>
+            {% endblock %}
+        </ul>
+    </nav>
+    <section class="content">
+        <header>
+            {% block header %}{% endblock %}
+        </header>
+        {% if message %} <h2>{{message}}<h2> {% endif %}
+        {% for message in get_flashed_messages() %}
+            <div class="flash">{{ message }}</div>
+        {% endfor %}
+        {% block content %}{% endblock %}
+    </section>
+</body>
